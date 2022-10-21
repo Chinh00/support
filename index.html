@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper-content">
+        <div class="border">
+            <div class="search">
+        
+                <input type="text" class="in">
+                <img src="image/1024px-Search_Icon.svg.png" alt="" class="image" onclick="show()">
+            </div>
+            <div class="content">
+                <img src="image/_R3A1845.jpg" alt="" class="i">
+            </div>
+            <div class="close">
+                <img src="image/tải xuống.jpg" alt="" onclick="close_x()">
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+    <script>
+        function show(){
+            check = 0;
+            name = $('.in').val()
+            fetch("csdl.json")
+                .then(function (response) {
+                    response.json().then(data => {
+                        for (const iterator of data) {
+                            if (iterator.name == name) {
+                                $('.i').attr("src", "image/" + iterator.image_link);
+                                check = 1;
+                                break;
+                            }
+                        }
+                    })
+                })
+            if (check == 0){
+
+            }
+            $(".search").css("animation", "my_animation_1 3s 1 forwards");
+            $(".content").css("animation", "my_animation_2 3s 1 forwards");
+            $(".content").css("display", "block");
+            $(".close").css("display", "block");
+            $(".close").css("animation", "my_animation_3 2s 1 forwards");
+        }
+        function close_x(){
+            $(".search").css("animation", "my_animation_4 3s 1 forwards");
+            $(".content").css("animation", "my_animation_5 3s 1 forwards");
+            $(".close").css("display", "none");
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
